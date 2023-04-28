@@ -6,6 +6,7 @@ import { Row, Col } from "react-bootstrap";
 const HomeScreen = () => {
   return (
     <>
+      <h1 className="py-3 text-center">Check out our last builds</h1>
       <h1>Latest Products</h1>
       <Row>
         {products.map((product) => (
