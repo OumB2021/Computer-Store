@@ -83,7 +83,7 @@ const ProductScreen = (props) => {
         </Col>
       </Row>
       <hr />
-      //Comment section will be added here
+      <p>Comment section will go down here</p>
     </>
   );
 };
