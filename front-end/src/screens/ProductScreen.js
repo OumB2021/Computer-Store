@@ -71,7 +71,7 @@ const ProductScreen = (props) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
-                  className="btn-warning w-100"
+                  className="btn-dark w-100"
                   type="button"
                   disabled={product.countInStock <= 0}
                 >
@@ -82,6 +82,8 @@ const ProductScreen = (props) => {
           </Card>
         </Col>
       </Row>
+      <hr />
+      //Comment section will be added here
     </>
   );
 };
