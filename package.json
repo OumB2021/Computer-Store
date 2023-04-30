@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/OumB2021/Computer-Store#readme",
   "dependencies": {
+    "colors": "^1.4.0",
     "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
