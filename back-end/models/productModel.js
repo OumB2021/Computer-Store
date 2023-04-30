@@ -50,7 +50,12 @@ const productSchema = mongoose.Schema(
     price: {
       type: Number,
       required: true,
-      default: 0,
+      validate: {
+        validator: function (value) {
+          return value >= 0;
+        },
+        message: "Price must be positive",
+      },
     },
     inventory: {
       type: Number,

@@ -11,7 +11,6 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
-      max: 50,
       unique: true,
     },
     password: {
@@ -27,10 +26,14 @@ const userSchema = mongoose.Schema(
     balance: {
       type: Number,
       required: true,
-      default: 0,
+      default: 0.0,
     },
-    compliments: Number,
-    warnings: Number,
+    compliments: {
+      type: Number,
+    },
+    warnings: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
