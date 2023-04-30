@@ -24,7 +24,11 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
-    balance: Number,
+    balance: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
     compliments: Number,
     warnings: Number,
   },
