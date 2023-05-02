@@ -26,7 +26,6 @@ router.get(
     } else {
       res.status(404).json({ message: "Product not found" });
     }
-    res.json(product);
   })
 );
 
