@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Dell XPS 13",
     image: "https://m.media-amazon.com/images/I/91MXLpouhoL._AC_SL1500_.jpg",
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "2",
     name: "Apple MacBook Pro",
     image: "https://m.media-amazon.com/images/I/61vFO3R5UNL._AC_SL1500_.jpg",
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: "3",
     name: "Asus ROG Strix",
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6531/6531333_sd.jpg;maxHeight=640;maxWidth=550",
@@ -40,7 +37,6 @@ const products = [
     numReviews: 6,
   },
   {
-    _id: "4",
     name: "HP Spectre x360",
     image: "https://m.media-amazon.com/images/I/81dNB8Sx39L._AC_SX679_.jpg",
     description:
@@ -53,7 +49,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: "5",
     name: "Lenovo ThinkPad X1 Carbon",
     image: "https://m.media-amazon.com/images/I/51CEz4+ffXS._AC_SX679_.jpg",
     description:
@@ -66,7 +61,6 @@ const products = [
     numReviews: 15,
   },
   {
-    _id: "6",
     name: "Microsoft Surface Laptop 4",
     image:
       "https://m.media-amazon.com/images/I/71p-M3sPhhL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
@@ -81,7 +75,6 @@ const products = [
   },
 
   {
-    _id: "8",
     name: "Samsung Galaxy Book Pro 360",
     image:
       "https://m.media-amazon.com/images/I/71X7lD8NQUL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
@@ -95,7 +88,6 @@ const products = [
     numReviews: 9,
   },
   {
-    _id: "9",
     name: "Razer Blade 15",
     image: "https://m.media-amazon.com/images/I/61-ODJrgv6L._AC_SX679_.jpg",
     description:
@@ -108,7 +100,7 @@ const products = [
     numReviews: 7,
   },
   {
-    _id: "10",
+
     name: "Alienware m15 R6",
     image:
       "https://m.media-amazon.com/images/I/71J1lHBTo3L.__AC_SX300_SY300_QL70_FMwebp_.jpg",
@@ -122,7 +114,7 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "11",
+
     name: "HP Omen 15",
     image: "https://m.media-amazon.com/images/I/91QgWSxmriL._AC_SX679_.jpg",
     description:
@@ -136,7 +128,7 @@ const products = [
   },
 
   {
-    _id: "14",
+
     name: "Amazon Echo Dot 3rd Generation",
     image: "/images/alexa.jpg",
     description:
