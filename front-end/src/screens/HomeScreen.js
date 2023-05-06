@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product.js";
 import Message from "../components/Message.js";
 import Loader from "../components/Loader.js";
+import Caroussel from "../components/Caroussel.js";
 import { Row, Col } from "react-bootstrap";
 import { listProducts } from "../actions/productActions.js";
 
@@ -16,20 +17,24 @@ const HomeScreen = () => {
 
   return (
     <>
-      <h1 className="py-3 text-center">Check out our last builds</h1>
-      <h1>Latest Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <h1 className="py-3 text-center">Check out our last builds</h1>
+          <Caroussel />
+          <hr />
+          <h1 className="py-3 text-center">Latest Products</h1>
+          <Row>
+            {products.map((product) => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+        </>
       )}
     </>
   );

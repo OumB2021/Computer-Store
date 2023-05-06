@@ -100,7 +100,6 @@ const products = [
     numReviews: 7,
   },
   {
-
     name: "Alienware m15 R6",
     image:
       "https://m.media-amazon.com/images/I/71J1lHBTo3L.__AC_SX300_SY300_QL70_FMwebp_.jpg",
@@ -114,7 +113,6 @@ const products = [
     numReviews: 12,
   },
   {
-
     name: "HP Omen 15",
     image: "https://m.media-amazon.com/images/I/91QgWSxmriL._AC_SX679_.jpg",
     description:
@@ -128,7 +126,6 @@ const products = [
   },
 
   {
-
     name: "Amazon Echo Dot 3rd Generation",
     image: "/images/alexa.jpg",
     description:

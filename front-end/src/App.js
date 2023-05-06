@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className="py-3">
+      <main className="bg-light">
         <Container>
           <Routes>
             <Route path="/" Component={HomeScreen} exact />
