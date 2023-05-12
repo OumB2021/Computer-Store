@@ -22,13 +22,28 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  console.log(cartItems);
   useEffect(() => {
     if (id) {
       dispatch(addToCart(id, qty));
     }
   }, [dispatch, id, qty]);
-  return <div>CartScreen</div>;
+
+  return (
+    <Row>
+      <Col md={8}>
+        <h1>Shopping Cart</h1>
+        {cartItems.length === 0 ? (
+          <Message>
+            Your cart is empty <Link to="/">Go Back</Link>
+          </Message>
+        ) : (
+          <ListGroup variant="flush"></ListGroup>
+        )}
+      </Col>
+      <Col md={2}></Col>
+      <Col md={2}></Col>
+    </Row>
+  );
 };
 
 export default CartScreen;
