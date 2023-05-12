@@ -15,10 +15,12 @@ import Loader from "../components/Loader.js";
 import "../css/ProductScreen.css";
 import Rating from "../components/Rating";
 import { listProductsDetails } from "../actions/productActions";
+import { useNavigate } from "react-router-dom";
 
-const ProductScreen = (props) => {
+const ProductScreen = () => {
   const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -27,6 +29,9 @@ const ProductScreen = (props) => {
     dispatch(listProductsDetails(id));
   }, [dispatch, id]);
 
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
   return (
     <>
       <div className="goback">
@@ -115,6 +120,7 @@ const ProductScreen = (props) => {
                   )}
                   <ListGroup.Item>
                     <Button
+                      onClick={addToCartHandler}
                       className="btn-dark w-100"
                       type="button"
                       disabled={product.inventory <= 0}
