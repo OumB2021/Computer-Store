@@ -6,10 +6,11 @@ import {
   productListReducer,
   productDetailsReducer,
 } from "./reducers/productReducers.js";
-
+import { CartReducer } from "./reducers/cartReducers.js";
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  cart: cartReducer,
 });
 const initialState = {};
 const middleware = [thunk];
