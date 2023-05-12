@@ -1,7 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Row, Image, ListGroup, Card, Button } from "react-bootstrap";
+import {
+  Col,
+  Row,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 import Message from "../components/Message.js";
 import Loader from "../components/Loader.js";
 import "../css/ProductScreen.css";
@@ -9,6 +17,7 @@ import Rating from "../components/Rating";
 import { listProductsDetails } from "../actions/productActions";
 
 const ProductScreen = (props) => {
+  const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -80,17 +89,35 @@ const ProductScreen = (props) => {
                     <Row>
                       <Col>Status</Col>
                       <Col>
-                        {product.countInStock >= 0
-                          ? "In stock"
-                          : "out of stock"}
+                        {product.inventory > 0 ? "In stock" : "out of stock"}
                       </Col>
                     </Row>
                   </ListGroup.Item>
+                  {product.inventory > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Qty</Col>
+                        <Col>
+                          <Form.Control
+                            as="select"
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
+                          >
+                            {[...Array(product.inventory).keys()].map((x) => (
+                              <option key={x + 1} value={x + 1}>
+                                {x + 1}
+                              </option>
+                            ))}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
                   <ListGroup.Item>
                     <Button
                       className="btn-dark w-100"
                       type="button"
-                      disabled={product.countInStock <= 0}
+                      disabled={product.inventory <= 0}
                     >
                       Add to cart
                     </Button>
