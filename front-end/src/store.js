@@ -10,9 +10,15 @@ import { CartReducer } from "./reducers/cartReducers.js";
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
-  cart: cartReducer,
+  cart: CartReducer,
 });
-const initialState = {};
+
+const cartItemsFromState = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+const initialState = {
+  cart: { cartItems: cartItemsFromState },
+};
 const middleware = [thunk];
 const store = configureStore(
   {
