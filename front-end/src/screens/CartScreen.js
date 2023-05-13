@@ -12,7 +12,7 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const CartScreen = () => {
@@ -30,7 +30,7 @@ const CartScreen = () => {
   }, [dispatch, id, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log(id);
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
