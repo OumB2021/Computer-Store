@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className="bg-light">
+      <main>
         <Container>
           <Routes>
             <Route path="/" Component={HomeScreen} exact />
