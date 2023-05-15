@@ -24,10 +24,20 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    isEmployee: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     balance: {
       type: Number,
       required: true,
       default: 0.0,
+    },
+    rating: {
+      type: Number,
+      required: true,
+      default: 0,
     },
     compliments: {
       type: Number,
