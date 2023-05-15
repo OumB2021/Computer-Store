@@ -31,8 +31,6 @@ const registerUser = asyncHandler(async (req, res) => {
   console.log(req.body);
   const userExists = await User.findOne({ email });
 
-  //res.send({ name, email, password });
-
   if (userExists) {
     res.status(400);
     throw new Error(`User ${name} already exists`);
@@ -55,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get User profile
-// @route   POST /api/users/profile
+// @route   GET /api/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
@@ -65,7 +63,39 @@ const getUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      balance: user.balance,
       isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("user not found");
+  }
+});
+
+// @desc    Update User profile
+// @route   PUT /api/users/profile
+// @access  Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.balance = req.body.balance || user.balance;
+
+    if (req.body.password) {
+      user.password = req.body.password || user.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      balance: updatedUser.balance,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
     });
   } else {
     res.status(404);
