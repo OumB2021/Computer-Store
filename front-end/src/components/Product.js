@@ -17,7 +17,7 @@ const Product = ({ product }) => {
           to={`/product/${product._id}`}
           className="text-decoration-none text-dark"
         >
-          <Card.Title as="div" className="text-capitalize">
+          <Card.Title as="div">
             <strong>{product.name}</strong>
           </Card.Title>
 
