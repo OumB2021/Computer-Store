@@ -1,8 +1,8 @@
-import orderModel from "../models/orderModel.js";
+import Order from "../models/orderModel.js";
 import asyncHandler from "express-async-handler";
 
 // @desc Create new order
-// @route GET /api/orders
+// @route POST /api/orders
 // @access Private
 const addOrderItems = asyncHandler(async (req, res) => {
   const {
@@ -18,6 +18,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("no order items found");
+    return;
   } else {
     const order = new Order({
       orderItems,
