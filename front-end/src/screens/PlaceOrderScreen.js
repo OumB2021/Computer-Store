@@ -8,38 +8,40 @@ import CheckoutSteps from "../components/CheckoutSteps";
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
 
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2);
+  };
   //compute prices
-  cart.itemsPrice = cart.cartItems.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
+  cart.itemsPrice = addDecimals(
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
 
   //Shipping price
-  cart.shippingPrice = cart.cartItems.length === 0 ? 0 : 25;
+  cart.shippingPrice = addDecimals(cart.cartItems.length === 0 ? 0 : 25);
 
   //tax price
-  cart.taxPrice = cart.itemsPrice * 0.09;
+  cart.taxPrice = addDecimals(cart.itemsPrice * 0.09);
 
   //cart Total price
-  cart.totalPrice = (
-    cart.itemsPrice +
-    cart.shippingPrice +
-    cart.taxPrice
-  ).toFixed(2);
+  cart.totalPrice = addDecimals(
+    Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
+  );
 
   const placeOrderHandler = () => {
     console.log("order");
   };
   return (
     <>
-      <CheckoutSteps step1 step2 step3 />
+      <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
           <ListGroup.Item>
             <ListGroup variant="flush">
               <h2>Shipping:</h2>
               <p>
-                <strong>Address: </strong>160 Convent Ave, New York, NY 10031
+                <strong>Address: </strong>
+                {cart.shippingAddress.address}, {cart.shippingAddress.city},{" "}
+                {cart.shippingAddress.zipCode}, {cart.shippingAddress.country}
               </p>
             </ListGroup>
           </ListGroup.Item>
@@ -97,7 +99,7 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>$ {cart.taxPrice.toFixed(2)}</Col>
+                  <Col>$ {cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
