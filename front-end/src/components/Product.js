@@ -18,7 +18,7 @@ const Product = ({ product }) => {
           className="text-decoration-none text-dark"
         >
           <Card.Title as="div">
-            <strong>{product.name}</strong>
+            <strong>{product.name.substring(0, 30)}</strong>
           </Card.Title>
 
           <Card.Text as="div">
