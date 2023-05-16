@@ -1,29 +1,32 @@
-import React, {useState, useEffect} from "react";
-import {Form, Button, Row, Col} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState, useEffect } from "react";
+import { Form, Button, Row, Col, Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import {getUserDetails, updateUserProfile} from "../actions/userActions";
-import {useLocation, useNavigate} from "react-router-dom";
+import { getUserDetails } from "../actions/userActions";
+import { listMyOrder } from "../actions/orderActions";
+import { useNavigate } from "react-router-dom";
 
 const ProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState(null);
   const [balance, setBalance] = useState(0);
 
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
-  const {loading, error, user} = userDetails;
+  const { loading, error, user } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
-  const {userInfo} = userLogin;
+  const { userInfo } = userLogin;
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const {success} = userUpdateProfile;
+  const { success } = userUpdateProfile;
+
+  const orderMyList = useSelector((state) => state.orderMyList);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderMyList;
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!userInfo) {
@@ -31,6 +34,7 @@ const ProfileScreen = () => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails("profile"));
+        dispatch(listMyOrder);
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -41,19 +45,12 @@ const ProfileScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
-    } else {
-      dispatch(updateUserProfile({id: user._id, name, email, password}));
-    }
   };
 
   return (
     <Row>
       <Col md={3}>
         <h2> Profile update </h2>{" "}
-        {message && <Message variant="danger"> {message} </Message>}{" "}
         {error && <Message variant="danger"> {error} </Message>}{" "}
         {success && (
           <Message variant="success"> Profile updated successfully </Message>
@@ -85,7 +82,7 @@ const ProfileScreen = () => {
             ></Form.Control>{" "}
           </Form.Group>{" "}
           <Button
-            style={{width: "100%", marginTop: "4px"}}
+            style={{ width: "100%", marginTop: "4px" }}
             type="submit"
             variant="dark"
           >
@@ -97,20 +94,52 @@ const ProfileScreen = () => {
       <Col md={3}>
         <h2> Profile info </h2>{" "}
         <Row>
-          <p style={{fontSize: 20}}> Name </p>
-          <p style={{fontSize: 15}}>Jane Doe</p>
+          <p style={{ fontSize: 20 }}> Name </p>
+          <p style={{ fontSize: 15 }}>{name}</p>
         </Row>
         <Row>
-          <p style={{fontSize: 20}}>Email</p>
-          <p style={{fontSize: 15}}>janedoe@email.com</p>
+          <p style={{ fontSize: 20 }}>Email</p>
+          <p style={{ fontSize: 15 }}>{email}</p>
         </Row>{" "}
         <Row>
-          <p style={{fontSize: 20}}>Balance</p>
-          <p style={{fontSize: 15}}>$1,000,000</p>
+          <p style={{ fontSize: 20 }}>Balance</p>
+          <p style={{ fontSize: 15 }}>${balance}</p>
         </Row>{" "}
       </Col>{" "}
       <Col md={6}>
         <h2 className="text-center"> My Orders </h2>{" "}
+        {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message variant="danger">{errorOrders}</Message>
+        ) : (
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+              </tr>
+            </thead>
+            <tbdoy>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>{order.totalPrice}</td>
+                  <td>
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <i className="fas fa-time" style={{ color: "red" }}></i>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbdoy>
+          </Table>
+        )}
       </Col>{" "}
     </Row>
   );

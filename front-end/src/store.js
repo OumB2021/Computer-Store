@@ -17,6 +17,7 @@ import {
 import {
   orderCreateReducer,
   orderDetailsReducer,
+  orderListReducer,
 } from "./reducers/orderReducers.js";
 
 const reducer = combineReducers({
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
+  orderMyList: orderListReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
@@ -48,7 +50,7 @@ const initialState = {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
   },
-  userLogin: { userInfo: userInfoFromStorage },
+  userLogin: { loading: false, userInfo: userInfoFromStorage, error: null },
 };
 const middleware = [thunk];
 const store = configureStore(

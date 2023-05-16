@@ -9,26 +9,58 @@ import { useNavigate } from "react-router-dom";
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
 
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
-  //compute prices
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-  );
 
-  //Shipping price
-  cart.shippingPrice = addDecimals(cart.cartItems.length === 0 ? 0 : 25);
+  const cart = useSelector((state) => {
+    const itemsPrice = state.cart.cartItems.reduce(
+      (acc, item) => acc + item.price * item.qty,
+      0
+    );
 
-  //tax price
-  cart.taxPrice = addDecimals(cart.itemsPrice * 0.09);
+    const shippingPrice = addDecimals(
+      state.cart.cartItems.length === 0 ? 0 : 25
+    );
+    const taxPrice = addDecimals(itemsPrice * 0.09);
+    const totalPrice = addDecimals(
+      Number(itemsPrice) + Number(shippingPrice) + Number(taxPrice)
+    );
 
-  //cart Total price
-  cart.totalPrice = addDecimals(
-    Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
-  );
+    return {
+      ...state.cart,
+      itemsPrice: itemsPrice,
+      shippingPrice: shippingPrice,
+      taxPrice: taxPrice,
+      totalPrice: totalPrice,
+    };
+  });
+
+  // //compute prices
+  // cart.itemsPrice = cart.cartItems.reduce(
+  //   (acc, item) => acc + item.price * item.qty,
+  //   0
+  // );
+
+  // //Shipping price
+  // const shippingPrice = addDecimals(cart.cartItems.length === 0 ? 0 : 25);
+
+  // //tax price
+  // const taxPrice = addDecimals(cart.itemsPrice * 0.09);
+
+  // //cart Total price
+  // const totalPrice = addDecimals(
+  //   Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
+  // );
+
+  // const updatedCart = {
+  //   ...state.cart,
+  //   itemsPrice: itemsPrice,
+  //   shippingPrice: shippingPrice,
+  //   taxPrice: taxPrice,
+  //   totalPrice: totalPrice,
+  // };
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;

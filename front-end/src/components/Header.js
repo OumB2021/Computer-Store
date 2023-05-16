@@ -34,7 +34,7 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/cart">
-                <Nav.Link href="/cart">
+                <Nav.Link>
                   <i className="fas fa-shopping-cart px-1"></i>Cart
                 </Nav.Link>
               </LinkContainer>
@@ -49,7 +49,7 @@ const Header = () => {
                 </NavDropdown>
               ) : (
                 <LinkContainer to="/login">
-                  <Nav.Link href="/login">
+                  <Nav.Link>
                     <i className="fas fa-user px-1"></i>Sign in
                   </Nav.Link>
                 </LinkContainer>

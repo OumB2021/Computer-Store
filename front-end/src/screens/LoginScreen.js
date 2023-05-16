@@ -38,7 +38,7 @@ const LoginScreen = () => {
       {error && <Message variant="danger">Invalid email or password</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <Form.Group controlId="emai">
+        <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             type="email"
