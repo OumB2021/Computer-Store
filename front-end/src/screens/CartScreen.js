@@ -12,14 +12,16 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import Message from "../components/Message";
+import CheckoutSteps from "../components/CheckoutSteps";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CartScreen = () => {
   const { id } = useParams();
   const location = useLocation();
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -34,10 +36,11 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = () => {
-    console.log("checkout");
+    navigate("/payment");
   };
   return (
     <Row>
+      <CheckoutSteps />
       <Col md={8}>
         <h1 className="py-3">Shopping Cart</h1>
         {cartItems.length === 0 ? (
