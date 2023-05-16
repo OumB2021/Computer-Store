@@ -21,12 +21,14 @@ A website that operates like Amazon and PcBuilder where users can buy individual
 10. Finally, type "npm run dev" to open the website 
 
 ### Set up Back-End
-In order to set up the back-end, you need appropriate data for MongoDB. This can come from local database, or cloud service like MongoDB cloud.
+In order to set up the back-end, you need appropriate data for MongoDB. This can come from local database, or cloud service like MongoDB cloud.  
 If you created your own database on cloud, you can click on "Connect". A window will popup asking you to download node.js, and mongodb. Once you do that, you will be given a link that has the password cut out. You can add the link to an .env file with the correct password. On the root page of the project, create an .env file. In the file put:
-  NODE_ENV = development
-  PORT = 5000
-  MONGO_URI = Your-URL-Link
-You can also connect via mongodb compass and create a connect with the same link.
+
+    NODE_ENV = development  
+    PORT = 5000  
+    MONGO_URI = Your-URL-Link
+  
+You can also connect via mongodb compass and create a connect with the same link.  
 Once added, you should be able to connect to your database, and the website should start getting information from it.
 
 ## Usage
