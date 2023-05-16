@@ -7,6 +7,26 @@ import CheckoutSteps from "../components/CheckoutSteps";
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
+
+  //compute prices
+  cart.itemsPrice = cart.cartItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
+
+  //Shipping price
+  cart.shippingPrice = 25;
+
+  //tax price
+  cart.taxPrice = cart.itemsPrice * 0.09;
+
+  //cart Total price
+  cart.totalPrice = (
+    cart.itemsPrice +
+    cart.shippingPrice +
+    cart.taxPrice
+  ).toFixed(2);
+
   const placeOrderHandler = () => {
     console.log("order");
   };
@@ -65,19 +85,25 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>$ {cart.itemsPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Shipping</Col>
+                  <Col>$ {cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>$ {cart.taxPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>$ {cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
