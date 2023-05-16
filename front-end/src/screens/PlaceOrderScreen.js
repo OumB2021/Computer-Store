@@ -15,7 +15,7 @@ const PlaceOrderScreen = () => {
   );
 
   //Shipping price
-  cart.shippingPrice = 25;
+  cart.shippingPrice = cart.cartItems.length === 0 ? 0 : 25;
 
   //tax price
   cart.taxPrice = cart.itemsPrice * 0.09;
