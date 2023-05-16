@@ -36,7 +36,7 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/payment");
+    navigate("/shipping");
   };
   return (
     <Row>
