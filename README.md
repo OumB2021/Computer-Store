@@ -19,16 +19,17 @@ A website that operates like Amazon and PcBuilder where users can buy individual
 ### Set up Back-End
 In order to set up the back-end, you need appropriate data for MongoDB. This can come from local database, or cloud service like MongoDB cloud.
 If you created your own database on cloud, you can add the link to an .env file. On the root page of the project, create an .env file. In the file put:
-NODE_ENV = development
-PORT = 5000
-MONGO_URI = Your-URL-Link
+  NODE_ENV = development
+  PORT = 5000
+  MONGO_URI = Your-URL-Link
+Once added, you should be able to connect to your database, and the website should start getting information from it.
 
 ## Usage
-Users will be able to view our website, but will only be able to buy products once they create an account. Users can also ask employees for help about certain products. Once bought, users can comment and rate the product. Employees will also be able to rate users and products as well. 
+Users will be able to view our website, but will only be able to buy products once they create an account. Users will be able to add items to a shopping cart while shopping, and then purchase the items depending on if they have funds in their account. Users can also ask employees for help about certain products. Once bought, users can comment and rate the product. Employees will also be able to rate users and products as well. 
 
 ## Credits
-Barry, Oumar
-Frost, Ian Niles
-Gao, Zhi
-Sehaumpai, Max
-Yeung, Richard
+Oumar Barry,
+Ian Niles Frost,
+Zhi Gao,
+Max Sehaumpai,
+Richard Yeung
