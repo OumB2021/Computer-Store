@@ -1,8 +1,5 @@
 # Computer-Store
 
-"![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)"
-
-
 ## Description
 A website that operates like Amazon and PcBuilder where users can buy individual computer parts or they can build build a PC by picking the necessary parts for it. The front-end will allow our website to display many products that have their own name, price, image, etc. These information are provided by our back-end which stores a lot of different informatiom such as products and users. Products that are rated will have a chance to either be on display on the front page or be removed from the website depending on how they are rated. There is also a system in place to give users a discount or ban them based on how others view their contributions. 
 
